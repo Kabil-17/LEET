@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Given a positive integer millis, write an asynchronous function that sleeps for millis milliseconds. It can resolve any value.
+        //Note that minor deviation from millis in the actual sleep duration is acceptable.
+        
+        function call1(){
+            console.log('calling function 1');
+        }
+        function call2(){
+            setTimeout(()=>console.log('calling function 2'),4000);
+        }
+
+        function call3(){
+            console.log('calling function 3');
+        }
+
+        function call(){
+            call1();
+            call2();
+            call3();
+        }
+       call();
+    </script>
+</body>
+</html>

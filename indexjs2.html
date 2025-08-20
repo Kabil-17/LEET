@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Given an integer n, return a counter function. 
+        // This counter function initially returns n and then returns 1 more than the previous value every subsequent time it is called (n, n + 1, n + 2, etc).
+        
+        let num = 1;
+        let wasCalled = false;
+        function counter(){
+            wasCalled = true;
+            console.log(num);
+    
+        if(wasCalled === true){
+            num += 1;
+            wasCalled = false;
+        }
+    }
+        counter();
+        counter();
+        counter();
+        counter();
+       
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1
+    //Write code that enhances all arrays such that you can call the array.last() method on any array and it will return the last element.
+    //  If there are no elements in the array, it should return -1.
+    //You may assume the array is the output of JSON.parse.
+    //method -1
+    function last(array){
+
+       return array.length === 0 ?-1:array[array.length - 1];
+    }
+
+    const arr = [1,2,3,4];
+    console.log(last(arr));
+
+    const arr1 = [
+        {namae:'mike',age : 44 },
+         {socialMedia: 'insta',activity: 'online'},
+        ]
+        console.log(last(arr1));
+
+    const arr2 =[];
+    console.log(last(arr2));
+    
+    //method-2
+    Array.prototype.last = function(){
+       return this.length === 0 ?-1:this[this.length - 1];
+    }
+
+    const arr3 = [1,2,3,4];
+    console.log(arr3.last());
+
+    const arr4 = [
+        {namae:'mike',age : 44 },
+         {socialMedia: 'insta',activity: 'online'},
+        ]
+        console.log(arr4.last());
+
+    const arr5 =[];
+    console.log(arr5.last());
+
+    
+
+    
+
+       
+    </script>
+</body>
+</html>
