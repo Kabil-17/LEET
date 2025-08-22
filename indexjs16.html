@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const promise1= Promise.resolve(4);
+        const promise2= Promise.resolve(3);
+
+         Promise.all([promise1,promise2])
+            .then(([value1,value2]) => console.log(value1+value2));
+        
+        
+        const p1 = new Promise((resolve)=>resolve(3));
+        const p2 = new Promise((resolve)=>resolve(7));
+
+        Promise.all([p1,p2])
+        .then(([val1,val2])=> console.log(val1+val2));
+
+    </script>
+</body>
+</html>
