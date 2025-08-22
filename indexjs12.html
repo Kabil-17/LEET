@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//Write a function expect that helps developers test their code. It should take in any value val and return an object with the following two functions.
+
+//toBe(val) accepts another value and returns true if the two values === each other. If they are not equal, it should throw an error "Not Equal".
+//notToBe(val) accepts another value and returns true if the two values !== each other. If they are equal, it should throw an error "Equal".
+
+        function except(val){
+            function toBe(input){
+                if(val === input){
+                    return true
+                }else{
+                     return 'they are not equal'
+                }
+            }
+
+             function notToBe(input){
+                if(val !== input){
+                    return true
+                }else{
+                   return 'they are equal'
+                }
+            }
+            return {toBe,notToBe}
+        }
+        const result = except();
+        console.log(except(4).toBe(4))
+        console.log(except(4).notToBe(4))
+
+    </script>
+</body>
+</html>

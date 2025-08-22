@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//Write a function createCounter. It should accept an initial integer init. It should return an object with three functions.
+
+//The three functions are:
+//increment() increases the current value by 1 and then returns it.
+//decrement() reduces the current value by 1 and then returns it.
+//reset() sets the current value to init and then returns it.
+    
+    
+        function createCounter(val){
+            let init = val;
+            let cur = val;
+            function increment(){
+                return cur = cur+1;
+            }
+            
+            function decrement(){
+                return cur = cur-1;
+            }
+
+            function reset(){
+                return cur = init;
+            }
+            return {increment,decrement,reset};
+        }
+        const final = createCounter(6);
+        console.log(final.increment());
+        console.log(final.increment());
+        console.log(final.decrement());
+        console.log(final.increment());
+        console.log(final.reset());
+
+    </script>
+</body>
+</html>
