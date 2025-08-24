@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Given a string s, find the length of the longest substring without duplicate characters.
+        const s='aabcdiejfhdfkskhv';
+        const r ='kgdqeueiuww';
+
+        
+        function findLength(string)
+        {
+            let left = 0;
+        let maxlength = 0;
+        let set = new Set();
+
+            for(let right = 0;right < string.length;right++){
+            while(set.has(string[right])){
+                set.delete(string[left])
+                left++
+            }
+            set.add(string[right])
+            maxlength = Math.max(maxlength,right -left +1);
+        }
+        return maxlength;
+    }
+        console.log(findLength(s));
+        console.log(findLength(r));
+        
+    </script>
+</body>
+</html>

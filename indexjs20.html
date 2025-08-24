@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Given an object or an array, return if it is empty.
+
+        //An empty object contains no key-value pairs.
+        //An empty array contains no elements.
+        //You may assume the object or array is the output of JSON.parse.
+       
+        function isEmpty(input){
+       
+       return objLength = Object.entries(input).length === 0? true:false;
+       
+       return arrLength = input.length === 0? true:false;
+       return false;
+        }
+        console.log(isEmpty([1,2]));
+        console.log(isEmpty([]));
+        console.log(isEmpty({name:'kabil'}));
+        console.log(isEmpty({}));
+
+
+    </script>
+</body>
+</html>
