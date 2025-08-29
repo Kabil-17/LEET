@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Write a function that checks if a given value is an instance of a given class or superclass. 
+        // For this problem, an object is considered an instance of a given class if that object has access to that class's methods.
+
+        //There are no constraints on the data types that can be passed to the function. 
+        // For example, the value or the class could be undefined.
+
+        function isInstanceOf(value,classfn){
+            if(typeof classfn!=="function") return false;
+            if(value===undefined || value ===null) return false;
+
+
+            let proto = Object.getPrototypeOf(value);
+            while(proto){
+                if(proto===classfn.prototype) return true;
+                proto = Object.getPrototypeOf(proto);
+            }
+            return false
+        }
+
+        class animal{
+            
+        }
+        class speak extends animal{
+
+        }
+        const dog = new speak();
+        console.log(isInstanceOf(dog,animal));
+        console.log(isInstanceOf(dog,speak));
+        console.log(isInstanceOf(dog,Date));
+
+        
+    </script>
+</body>
+</html>
