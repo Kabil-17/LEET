@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         var maxAverageRatio = function(classes, extraStudents) {
+    function gain(pass, total) {
+        return (pass + 1) / (total + 1) - (pass / total);
+    }
+
+    let heap = [];
+
+    for (let [pass, total] of classes) {
+        heap.push([gain(pass, total), pass, total]);
+    }
+
+    heap.sort((a, b) => b[0] - a[0]);
+
+    while (extraStudents > 0) {
+        let [g, pass, total] = heap.shift();
+        pass += 1;
+        total += 1;
+        heap.push([gain(pass, total), pass, total]);
+        heap.sort((a, b) => b[0] - a[0]);
+        extraStudents--;
+    }
+    let totalRatio = 0;
+    for (let [_, pass, total] of heap) {
+        totalRatio += pass / total;
+    }
+
+    return totalRatio / classes.length;
+    }
+        console.log(maxAverageRatio([[1,2],[3,5],[2,2]],2))
+
+
+
+
+    </script>
+</body>
+</html>
