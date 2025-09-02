@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Write a class that allows getting and setting key-value pairs, however a time until expiration is associated with each key.
+        //The class has three public methods:
+        //set(key, value, duration): accepts an integer key, an integer value, and a duration in milliseconds. 
+        //Once the duration has elapsed, the key should be inaccessible.
+        //The method should return true if the same un-expired key already exists and false otherwise.
+        //Both the value and duration should be overwritten if the key already exists.
+        //get(key): if an un-expired key exists, it should return the associated value. Otherwise it should return -1.
+        //count(): returns the count of un-expired keys
+
+        class TimeLimitedCache {
+    constructor() {
+        this.store = new Map(); 
+    }
+
+    set(key, value, duration) {
+        const now = Date.now();
+        const expiryTime = now + duration;
+
+        const exists = this.store.has(key) && this.store.get(key).expiryTime > now;
+
+        this.store.set(key, { value, expiryTime });
+
+        return exists;
+    }
+
+    get(key) {
+        const now = Date.now();
+
+        if (this.store.has(key)) {
+            const entry = this.store.get(key);
+
+            if (entry.expiryTime > now) {
+                return entry.value;
+            }
+        }
+
+        return -1;
+    }
+
+    count() {
+        const now = Date.now();
+        let activeKeys = 0;
+
+        for (const [key, entry] of this.store) {
+            if (entry.expiryTime > now) {
+                activeKeys++;
+            }
+        }
+
+        return activeKeys;
+    }
+}
+    const cache = new TimeLimitedCache();
+
+console.log(cache.set(1, 42, 2000)); 
+console.log(cache.get(1));           
+setTimeout(() => console.log(cache.get(1)), 2100); 
+
+console.log(cache.set(1, 99, 3000)); 
+console.log(cache.count());          
+
+
+
+        
+    </script>
+</body>
+</html>
