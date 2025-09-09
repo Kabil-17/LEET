@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.groupBy=function(fn){
+            let result={};
+
+            for(let item of this){
+
+                let key = fn(item)
+
+                if(!result[key]){
+                    result[key]=[]
+                }
+                result[key].push(item)
+            }
+            return result;
+        }
+          
+        console.log([1,2,1].groupBy(Number))
+        console.log(['one','two','six','five'].groupBy((word)=>word.length))
+        console.log([{'id':'1'},{'id':'2'},{'id':'1'}].groupBy((item)=>item.id))
+        console.log([[1,2,3],[4,5,6],[1,3,2]].groupBy((arr)=>arr[0]))
+        console.log([1,2,3,4,5,6,7,8].groupBy((arr)=>arr>5))
+        console.log([[101, "Alice", "A"],
+        [102, "Bob", "B"],
+        [103, "Charlie", "A"],
+        [104, "David", "C"],
+        [105, "Eva", "B"]].groupBy((grade)=>grade[2]))
+
+    </script>
+</body>
+</html>
