@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given a multi-dimensional array of integers, return a generator object which yields integers in the same order as inorder traversal.
+
+A multi-dimensional array is a recursive data structure that contains both integers and other multi-dimensional arrays.
+
+inorder traversal iterates over each array from left to right, yielding any integers it encounters or applying inorder traversal to any arrays it encounters. -->
+    <script>
+        const a = [1,2,[3,4,[5],6],7]
+//         function* example(ar) {
+//             for(let item of ar){
+//                 if(item === Number){
+//                     yield item;
+//                 }
+//                 else if(item.isArray){
+//                     example(item)
+//                 }
+//             }
+// }
+
+function* flat(arr){
+    for(let item of arr){
+         console.log(item)
+        if(Array.isArray(item) && item.length > 0 ){
+            yield* flat(item)
+        }
+        else{
+           yield item
+        }
+    }
+
+}
+
+const gen = flat(a);
+
+    </script>
+</body>
+</html>
