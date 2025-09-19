@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Design an EventEmitter class. This interface is similar (but with some differences) to the one found in Node.js or the Event Target interface of the DOM. The EventEmitter should allow for subscribing to events and emitting them.
+
+Your EventEmitter class should have the following two methods:
+
+subscribe - This method takes in two arguments: the name of an event as a string and a callback function. This callback function will later be called when the event is emitted.
+An event should be able to have multiple listeners for the same event. When emitting an event with multiple callbacks, each should be called in the order in which they were subscribed.
+An array of results should be returned. You can assume no callbacks passed to subscribe are referentially identical.
+The subscribe method should also return an object with an unsubscribe method that enables the user to unsubscribe. When it is called, the callback should be removed from the list of subscriptions and undefined should be returned.
+
+emit - This method takes in two arguments: the name of an event as a string and an optional array of arguments that will be passed to the callback(s). 
+If there are no callbacks subscribed to the given event, return an empty array. Otherwise, return an array of the results of all callback calls in the order they were subscribed. -->
+
+<script>
+    class EventEmitter{
+        constructor(){
+            this.event = {};
+        }
+         subscribe(eventName,callback){
+            if(!this.event[eventName]){
+                this.event[eventName]=[];
+            }
+            this.event[eventName].push(callback);
+
+            return {
+                unsubscribe:()=>{
+                this.event[eventName] = this.event[eventName].filter(cb=>cb!==callback)
+                return undefined;
+            }
+        };
+        }
+
+
+        emit(eventName,...args){
+            if(!this.event[eventName]){
+                return []
+            }
+
+            return this.event[eventName].map(cb=>cb(...args))
+        }
+    }
+
+    const emitter = new EventEmitter();
+
+    function emiter(a,b){
+        return a+b
+    }
+
+    function sum(a){
+        return a*a
+    }
+
+    function greet(name){
+       return `this is ${name}`
+    }
+
+
+    function shout(msg){
+        return `${msg.toUpperCase()}`
+    }
+
+    const emi1 = emitter.subscribe('hello',emiter);
+    const emi2 = emitter.subscribe('world',sum);
+    const emi3 = emitter.subscribe('wk',greet);
+    const emi4 = emitter.subscribe('wk',shout);
+
+    console.log(emitter.emit('hello',2,1))
+
+    console.log(emitter.emit('world',9));
+
+    console.log(emitter.emit('wk','josh'));
+
+    console.log(emi2.unsubscribe());
+
+    console.log(emitter.emit('world',9));
+
+    emi3.unsubscribe();
+
+    console.log(emitter.emit('wk','josh'));
+
+
+    
+
+
+
+
+
+       
+</script>
+</body>
+</html>
