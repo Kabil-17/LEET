@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given an object or array obj, return a compact object.
+
+A compact object is the same as the original object, except with keys containing falsy values removed. 
+This operation applies to the object and any nested objects. Arrays are considered objects where the indices are keys.
+A value is considered falsy when Boolean(value) returns false.
+
+You may assume the obj is the output of JSON.parse. In other words, it is valid JSON. -->
+
+<script>
+    function compact(obj) {
+    if (Array.isArray(obj)) {
+
+        return obj
+            .map(item => compact(item))  // clean nested values
+            .filter(Boolean);                  // remove falsy
+    } else if (obj !== null && typeof obj === "object") {
+
+        let newObj = {};
+        for (let key in obj) {
+            if (Boolean(obj[key])) {
+                newObj[key] = compact(obj[key]); // clean nested
+            }
+        }
+        return newObj;
+    }
+    return obj;
+}
+
+</script>
+</body>
+</html>
