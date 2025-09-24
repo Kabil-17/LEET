@@ -13,34 +13,37 @@
         If two objects share an id, their properties should be merged into a single object: If a key only exists in one object, that single key-value pair should be included in the object.
          If a key is included in both objects, the value in the object from arr2 should override the value from arr1. solve this also explain the problem -->
     <script>
-        function joinArrays(arr1, arr2) {
-    const map = new Map();
 
-    for (let obj of arr1) {
-        map.set(obj.id, { ...obj });
-    }
+        function joinArrays(arr1,arr2){
 
-    for (let obj of arr2) {
-        if (map.has(obj.id)) {
+            const map = new Map();
 
-            map.set(obj.id, { ...map.get(obj.id), ...obj });
-        } else {
-            map.set(obj.id, { ...obj });
+            for(let obj of arr1){
+                map.set(obj.id,{...obj})
+            }
+
+            for(let obj of arr2){
+                if(map.has(obj.id)){
+                    map.set(obj.id,{...map.get(obj.id),...obj})
+                }
+                else{
+                    map.set(obj.id,{...obj})
+                }
+            }
+            return Array.from(map.values()).sort((a,b)=>a.id - b.id);
         }
-    }
-
-    return Array.from(map.values()).sort((a, b) => a.id - b.id);
-}
-
+      
 
 console.log(joinArrays(
   [
     { id: 1, x: 1 },
     { id: 2, x: 9 }
   ],
-  [
+  [ 
+    { id: 4, x: 7},
     { id: 3, x: 5 },
-    { id: 2, y: 10 }
+    { id: 2, y: 10 },
+    { id: 1, x: 7}
   ]
 ));
 

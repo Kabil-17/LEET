@@ -15,18 +15,30 @@ A value is considered falsy when Boolean(value) returns false.
 You may assume the obj is the output of JSON.parse. In other words, it is valid JSON. -->
 
 <script>
-    function compact(obj) {
+function compactObject(obj) {
     if (Array.isArray(obj)) {
+        let newArr = [];
+        for (let element of obj) {
+            if (element) { // check truthy
+                if (typeof element === "object" && element !== null) {
+                    newArr.push(compactObject(element)); // recursion
+                } else {
+                    newArr.push(element);
+                }
+            }
+        }
+        return newArr;
+    }
 
-        return obj
-            .map(item => compact(item))  // clean nested values
-            .filter(Boolean);                  // remove falsy
-    } else if (obj !== null && typeof obj === "object") {
-
+    if (obj !== null && typeof obj === "object") {
         let newObj = {};
         for (let key in obj) {
-            if (Boolean(obj[key])) {
-                newObj[key] = compact(obj[key]); // clean nested
+            if (obj[key]) { // check truthy
+                if (typeof obj[key] === "object") {
+                    newObj[key] = compactObject(obj[key]); // recursion
+                } else {
+                    newObj[key] = obj[key];
+                }
             }
         }
         return newObj;
