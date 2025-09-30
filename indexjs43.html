@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given a triangle array, return the minimum path sum from top to bottom.
+
+For each step, you may move to an adjacent number of the row below. 
+More formally, if you are on index i on the current row, you may move to either index i or index i + 1 on the next row. -->
+
+<script>
+    function minTotal(triangle){
+
+        let n = triangle.length;
+
+        if(n===0) return ;
+
+        const dp = [];
+
+        dp[0] = [triangle[0][0]];
+
+        for(row=1;row<n;row++){
+            dp[row]=[];
+
+            for(let i=0;i<triangle[row].length;i++){
+                let val = triangle[row][i];
+
+                let left = i>0? dp[row-1][i-1]: Infinity;
+                let right = i<dp[row-1].length? dp[row-1][i]:Infinity;
+
+                dp[row][i]=val+Math.min(left,right);
+            }
+        }
+        return Math.min(...dp[n-1])
+ }
+
+    const arr = [
+  [2],
+  [3, 4],
+  [6, 5, 7],
+  [4, 1, 8, 3]
+]
+
+
+    console.log(minTotal(arr))
+</script>
+</body>
+</html>
