@@ -13,39 +13,33 @@
             const delayed = arr.map(fn=>{
                 return function(){
                     return new Promise((resolve,reject)=>{
-                            fn().then(result=>{
-                                setTimeout(()=>resolve(result),ms);
-                            })
-                            .catch(reject)
+                        fn().then(result=>{
+                            setTimeout(()=>resolve(result),ms)
+                        })
+                        .catch(reject);
                     });
                 };
             });
-            return delayed;
-        };
+            return delayed
+        }
 
-        
-            function f1(){
-               return new Promise((resolve)=>resolve('func 1'))
-            }
-            function f2(){
-                return new Promise((resolve)=>resolve('func 2'))
-            }
-            function f3(){
-                return new Promise((resolve)=>resolve('func 3'))
-            }
+        function f1(){
+            return Promise.resolve('func 1');
+        }
+        function f2(){
+            return Promise.resolve('func 2');
+        }
+        function f3(){
+            return Promise.resolve('func 3');
+        }
 
-            const fun=[f1,f2,f3];
+        const fun = [f1,f2,f3];
 
-            const delayedfn = arrfn(fun,1000);
+        const delayedfn = arrfn(fun,2000);
 
-            delayedfn[0]().then((console.log))
-            delayedfn[1]().then((console.log))
-            delayedfn[2]().then((console.log))
-        
-
-        // console.log(arrfn(fun))
-
-        // console.log(fun[0]());
+        delayedfn[0]().then(console.log)
+        delayedfn[1]().then(console.log)
+        delayedfn[2]().then(console.log)
     </script>
 </body>
 </html>
