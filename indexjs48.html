@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function objMerge(obj1,obj2){
+           
+            if(Array.isArray(obj1) && Array.isArray(obj2)){
+                const result = [];
+                const length = Math.max(obj1.length,obj2.length);
+                console.log(length)
+                for(let i = 0; i < length; i++){
+                    if(i in obj1 && i in obj2){
+                        result[i]  = objMerge(obj1[i],obj2[i]);
+                    }
+                    else if(i in obj1){
+                        result[i] = obj1[i];
+                    }
+                    else{
+                        result[i] = obj2[i];
+                    }
+                }
+                return result;
+            }
+
+            if(obj1 && typeof obj1 === 'object' && 
+               obj2 && typeof obj2 === 'object' &&
+               !Array.isArray(obj1) && !Array.isArray(obj2)){
+                const result = {...obj1};
+                for(let key in obj2){
+                    if(key in obj1){
+                        result[key] = objMerge(obj1[key],obj2[key]);
+                    }
+                    else{
+                        result[key] = obj2[key];
+                    }
+                }
+                return result;
+               }
+               return obj2;
+        }
+       
+       
+       const obj11 = {
+        id: 1,
+        name: "Alice",
+        address: {
+            city: "Paris",
+            zip: 75000,
+            coords: { lat: 48.8, lon: 2.3 }
+        },
+        hobbies: ["reading", "music"],
+        scores: [10, { math: 80, sci: 90 }],
+        info: { active: true, tags: ["A", "B"] }
+    }
+
+       const obj21 = {
+        name: "Bob",
+        address: {
+            city: "London",
+            coords: { lat: 51.5 },
+            country: "UK"
+        },
+        hobbies: ["travel", "gaming", "art"],
+        scores: [20, { math: 85 }, 99],
+        info: { active: false, tags: ["C"] },
+        newField: "added"
+    }
+    
+   console.log(objMerge(obj11,obj21));
+    </script>
+</body>
+</html>
