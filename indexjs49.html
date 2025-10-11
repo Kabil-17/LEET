@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+You can return the answer in any order. -->
+    <script>
+        const nums1 = [1,2,3,5];
+        const target1 = 8;
+        const nums2 = [2,7,11,15] 
+        const target2 = 9
+        const nums3 = [3,2,4]
+        const target3 = 6
+        
+            function findTarget(arr,target){
+            for(let i = 0; i<arr.length-1;i++){
+                let val = arr[i]+arr[i+1]
+                if(val === target){
+                    console.log([i,i+1])
+                }
+            }
+            }
+
+            findTarget(nums1,target1)
+            findTarget(nums2,target2)
+            findTarget(nums3,target3)
+
+    </script>
+</body>
+</html>
