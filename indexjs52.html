@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function zigzag(s,numRow){
+        if(numRow === 1 || s.length < numRow) return s;
+       let result = Array.from({length:numRow},()=>'');
+       let goingdown = false;
+       let count = 0;
+       for(let c of s){
+        result[count]+=c;
+        if(count === 0 || count === numRow-1) goingdown = !goingdown;
+        count += goingdown? 1: -1;
+       }
+       return result.join('');
+       }
+
+       console.log(zigzag('paypalishiring',3))
+   
+    </script>
+</body>
+</html>
