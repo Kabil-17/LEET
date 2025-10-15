@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+
+Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+Return k. -->
+    <script>
+        function removeel(num,val){
+            
+                for(let i =0; i<num.length;i++ ){
+                    if(num[i] === val)
+                    { num.splice(i,1) 
+                        i--;
+                    }
+                }
+                return num.length;
+            
+        }
+        console.log(removeel([1,2,3,4,5,3,3],3))
+    </script>
+</body>
+</html>
