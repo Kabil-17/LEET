@@ -38,20 +38,12 @@ function arrayToLinkedList(arr) {
   return head;
 }
 
-function printList(head) {
-  let res = [];
-  while (head) {
-    res.push(head.val);
-    head = head.next;
-  }
-  console.log(res.join(' '));
-}
+
 
 
 let arr = [1,1,2,3,3];
 let list = arrayToLinkedList(arr);
-list = deleteDuplicates(list);
-printList(list);   
+console.log(deleteDuplicates(list));
 
 
     </script>
