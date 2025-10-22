@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type. -->
+    <script>
+        function validParantheses(s){
+            let stack = [];
+            let pairs = {
+                ")": "(",
+                "}": "{",
+                "]": "["
+                };
+
+                for(let ch of s){
+                    if(ch === "("||ch === "{"||ch==="["){
+                        stack.push(ch)
+                    }
+                    else{
+                        let last = stack.pop();
+                        if(last !== pairs[ch]) return false;
+                    }
+                }
+                return stack.length === 0;
+        }
+        console.log(validParantheses("({[})"))
+        
+    </script>
+</body>
+</html>

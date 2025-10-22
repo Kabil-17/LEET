@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+  -->
+    <script>
+        function longestPrefix(arr){
+        let prefix = [...arr[0]];       //assign first as prefix
+        if(!arr[1].includes(prefix[0])) return
+        for(let i = 1; i< arr.length;i++){
+             let j = 0;
+             let dummy = [];
+             let curWord = [...arr[i]];  // next words as current to check
+             while(j<prefix.length){
+                
+                if(prefix[j]===curWord[j]){   //check for common prefix
+                    dummy.push(curWord[j])
+                }
+                j++;
+             }
+             prefix = dummy
+
+        }
+        return prefix.join('')
+   
+        }
+
+        const arr = ["flower","flow","flight"];
+
+        console.log(longestPrefix(arr))
+        console.log(longestPrefix(["dog", "racecar", "car"]))
+        console.log(longestPrefix(["interspecies", "interstellar", "interstate"]))
+       
+    </script>
+</body>
+</html>
