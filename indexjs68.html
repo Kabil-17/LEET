@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var addBinary = function(a,b){
+            let i = a.length-1;
+            let j = b.length-1;
+            let result = [];
+            let carry = 0;
+
+            while(i>=0||j>=0||carry){
+                let sum = carry;
+                if(i>=0) sum+=Number(a[i]);
+                if(j>=0) sum+=Number(b[j]);
+                result.push(sum%2);
+                carry = Math.floor(sum/2);
+                i--;
+                j--;
+            }
+            return result.reverse().join('');
+        }
+        console.log(addBinary("11","1"));
+        console.log(addBinary("1010","1011"))
+        console.log(addBinary("101","111"))
+        
+    </script>
+</body>
+</html>
