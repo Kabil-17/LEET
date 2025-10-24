@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only. -->
+    <script>
+        var lastWord = function(s){
+            s = s.trim()  //it removes the spaces starting and end of the string
+                          //in between spaces still occurs only removes the outside spaces only
+                let j = 0;
+            for(let i = 0;i < s.length; i++){
+                if(s[i]===' '){
+                    j = -1;
+                }
+                j++;
+            }
+            return j;
+        }
+        console.log(lastWord("Hello World"));
+        console.log(lastWord("   fly me   to   the moon  "));
+        console.log(lastWord("luffy is still joyboy   "))
+    </script>
+</body>
+</html>

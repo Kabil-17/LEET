@@ -6,13 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.
+    <script>
+        var plusOne = function(digits){
+            for(let i = digits.length-1;i >= 0;i--){
+                if(digits[i]<9){
+                    digits[i]++;
+                    return digits;
+                }
+                digits[i] = 0;
+            }
+            digits.unshift(1);
+            return digits;
+        }
+        console.log(plusOne([9,9,9]))
 
-The overall run time complexity should be O(log (m+n)). -->
-<script>
-   
-
-    console.log(palin('amma'));
-</script>
+    </script>
 </body>
-</html> 
+</html>
