@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+      function TreeNode(val, left = null, right = null) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+}
+
+function buildTree(arr) {
+  if (!arr.length) return null;
+  let nodes = arr.map(v => (v === null ? null : new TreeNode(v)));
+  let i = 0;
+
+  for (let j = 1; j < nodes.length; j += 2) {
+    if (nodes[i] !== null) {
+      nodes[i].left = nodes[j] || null;
+      nodes[i].right = nodes[j + 1] || null;
+    }
+    i++;
+  }
+  return nodes[0];
+}
+
+function inorderTraversal(root) {
+  let result = [];
+
+  function traverse(node) {
+    if (node === null) return;
+    traverse(node.left);     // go left
+    result.push(node.val);   // visit node
+    traverse(node.right);    // go right
+  }
+
+  traverse(root);
+  return result;
+}
+
+let root = buildTree([1,2,3,4,5,null,8,null,null,6,7,9]);
+console.log(inorderTraversal(root));  // [4, 2, 9, 6, 5, 7, 1, 3, 8]
+
+
+    </script>
+</body>
+
+</html>
