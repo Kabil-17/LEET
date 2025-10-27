@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given the root of a binary tree, return its maximum depth.
+A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node. -->
+    <script>
+        class TreeNode{
+            constructor(val,left=null,right=null){
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+        function buildTree(arr){
+            const nodes = arr.map(v => (v===null?null:new TreeNode(v)));
+            for(let i = 0;i<arr.length;i++){
+                let left = 2*i+1;
+                let right = 2*i+2;
+                if(left<arr.length) nodes[i].left = nodes[left]||null;
+                if(right<arr.length) nodes[i].right = nodes[right]||null;
+            }
+            return nodes[0];
+        }
+
+        function maxDepth(nodes){
+            function depth(node){
+            if(node === null) return 0; 
+
+           
+            let lefttree = depth(node.left);
+            let righttree = depth(node.right);
+
+            return  Math.min(lefttree,righttree)+1
+        }
+        return depth(nodes);
+        }
+        const root = buildTree([5,4,8,11,13,4,7,2,1])
+        console.log(maxDepth(root));
+
+    </script>
+</body>
+</html>
