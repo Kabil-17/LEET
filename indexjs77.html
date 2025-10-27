@@ -8,6 +8,30 @@
 <body>
     <!-- Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum/. -->
      <script>
+        class TreeNode{
+            constructor(val,left=null,right=null){
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+        }
+        function buildTree(arr){
+            if(!arr.length) return null;
+
+            let root = arr.map(v=>(v===null?null:new TreeNode(v)));
+            let i = 0;
+            while(i<arr.length){
+                if(root[i] !== null) {
+                    let left = 2*i+1;
+                    let right = 2*i+2;
+                if(left<arr.length) root[i].left = root[left];
+                if(right<arr.length) root[i].right = root[right];
+                }
+                i++; 
+            } 
+            return root[0];
+        }
+        
         var hasPathSum = function(root, targetSum) {
     if(root === null) return false;
     if(root.left===null && root.right === null){
@@ -24,6 +48,13 @@
    let righthaspath = hasPathSum(root.right,remaining);
    return lefthaspath || righthaspath;
 };
+
+const nodes = buildTree([5,4,8,11,null,13,4,7,2,null,null,null,1]);
+console.log(hasPathSum(nodes,22))
+
+const nodes1 = buildTree([1,2,3]);
+console.log(hasPathSum(nodes1,5));
+
      </script>
 </body>
 </html>
