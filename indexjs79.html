@@ -19,6 +19,7 @@ A binary tree's maximum depth is the number of nodes along the longest path from
         function buildTree(arr){
             const nodes = arr.map(v => (v===null?null:new TreeNode(v)));
             for(let i = 0;i<arr.length;i++){
+                if(nodes === null) continue;   // important guard
                 let left = 2*i+1;
                 let right = 2*i+2;
                 if(left<arr.length) nodes[i].left = nodes[left]||null;

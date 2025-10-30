@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- You are given a positive number n.
+
+Return the smallest number x greater than or equal to n, such that the binary representation of x contains only set bits -->
+    <script>
+       function smallNum(n){
+        let k = 1;
+        while(true){
+            let x = (1 << k)-1; // << left shift => 2^k-1 
+            if(x>=n)return x    // actual work of this 1<<1 => x*2^n => 1*2^1 
+            k++;
+        }
+       }
+       console.log(smallNum(51))
+
+    </script>
+</body>
+</html>

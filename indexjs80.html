@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Lists{
+            constructor(val, next = null){
+                this.val = val;
+                this.next = next;
+            }
+        }
+        function buildList(arr,pos){
+            const head = new Lists(arr[0]);
+            let current = head;
+            let cycleNode = null;
+
+            for(let i = 1;i<arr.length;i++){
+                current.next = new Lists(arr[i]);
+                current = current.next;
+                if(i === pos){
+                    cycleNode = current;
+                }
+            }
+                if(pos>=0) current.next = cycleNode || head;
+            return head;
+        }
+        // Floyds cycle detection algorithm
+        function hasCycle(head){
+            if(!head) return false;
+
+            let slow = head;
+            let fast = head;
+
+            while(fast && fast.next){
+                slow = slow.next;
+                fast = fast.next.next;
+
+                if(slow === fast) return true;
+            }
+            return false;
+        }
+
+        let nodes1 = buildList([1,2,3,4],1);
+        console.log(hasCycle(nodes1))
+        
+    </script>
+</body>
+</html>
