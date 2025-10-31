@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+class ListNode {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+let c1 = new ListNode(4);
+let c2 = new ListNode(5);
+c1.next = c2;
+
+let a1 = new ListNode(1);
+let a2 = new ListNode(2);
+let a3 = new ListNode(3);
+a1.next = a2;
+a2.next = a3;
+a3.next = c1; 
+let headA = a1;
+
+
+let b1 = new ListNode(9);
+b1.next = c1; 
+let headB = b1;
+
+
+function printLinkedList(head) {
+    let current = head;
+    let output = "";
+    while (current) {
+        output += current.val + " -> ";
+        current = current.next;
+    }
+    output += "null";
+    console.log(output);
+}
+
+function getIntersectionNode(headA, headB) {
+    if (!headA || !headB) return null;
+
+    let pA = headA;
+    let pB = headB;
+
+    while (pA !== pB) {
+        // Move each pointer forward
+        // When it reaches the end, switch to the other list’s head
+        pA = pA ? pA.next : headB;
+        pB = pB ? pB.next : headA;
+    }
+
+    // Either the intersection node or null
+    return pA;
+}
+
+console.log(getIntersectionNode(headA, headB))
+
+
+</script>
+</body>
+</html>
