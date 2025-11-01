@@ -32,16 +32,6 @@ b1.next = c1;
 let headB = b1;
 
 
-function printLinkedList(head) {
-    let current = head;
-    let output = "";
-    while (current) {
-        output += current.val + " -> ";
-        current = current.next;
-    }
-    output += "null";
-    console.log(output);
-}
 
 function getIntersectionNode(headA, headB) {
     if (!headA || !headB) return null;

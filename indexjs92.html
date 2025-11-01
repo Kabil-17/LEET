@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Reverse bits of a given 32 bits signed integer. -->
+     <script>
+        function reverseBits(num){
+        let binary = num.toString(2).padStart(32,'0');    //padStart helps to reach 32 bits; it adds extra 0's to full fill 32bit
+         binary = binary.split('').reverse().join('');
+         return parseInt(binary,2)>>>0;  // >>> helps to conver 32 bit unsigned -> non-negative
+        }
+        console.log(reverseBits(1234567));
+        console.log(reverseBits(5));
+     </script>
+</body>
+</html>

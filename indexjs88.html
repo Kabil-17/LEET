@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class TreeNode{
+            constructor(val,next = null){
+                this.val = val;
+                this.next = next;
+            }
+        }
+        function buildtree(arr){
+            const head = new TreeNode(arr[0]);
+            let current = head;
+            for(let i = 1;i<arr.length;i++){
+                current.next = new TreeNode(arr[i]);
+                current = current.next;
+            }
+            return head;
+        }
+        function removeNode(head,num){
+            if(!head || !num.length) return null;
+            let numSet = new Set(num);   // Set helps in large data it improves the time 
+            while(head && numSet.has(head.val)){
+                head = head.next;
+            }
+            let current = head;
+            let i = 0;
+            while(current && current.next){
+                if(numSet.has(current.next.val)){
+                current.next = current.next.next;
+                }
+                else{
+                    current = current.next;
+                }
+            }
+            return head;
+                
+        }
+        let head1 = buildtree([1,2,3,4,5]);
+        console.log(removeNode(head1,[1,2,3]));
+
+        let head2 = buildtree([1,2,1,2,1,2]);
+        console.log(removeNode(head2,[1]));
+
+    </script>
+</body>
+</html>
