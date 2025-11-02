@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Write an algorithm to determine if a number n is happy.
+
+A happy number is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.  -->
+    <script>
+        function isHappy(n) {
+            const seen = new Set();
+
+            while (n !== 1 && !seen.has(n)) {
+                seen.add(n);
+                let sum = 0;
+                let temp = n;
+                while (temp > 0) {
+                    let digit = temp % 10;
+                    sum += digit * digit;
+                    temp = Math.floor(temp / 10);
+                }
+                n = sum;
+            }
+            return n === 1;
+        }
+
+        console.log(isHappy(19)); 
+        console.log(isHappy(2));  
+        console.log(isHappy(7));  
+        console.log(isHappy(20)); 
+
+
+    </script>
+</body>
+
+</html>

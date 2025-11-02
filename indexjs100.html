@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given the root of a complete binary tree, return the number of the nodes in the tree.
+
+According to Wikipedia, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible.
+It can have between 1 and 2h nodes inclusive at the last level h.
+
+Design an algorithm that runs in less than O(n) time complexity. -->
+<script>
+    class TreeNode {
+    constructor(val = 0, left = null, right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+function buildTree(arr) {
+    if (!arr.length) return null;
+    let nodes = arr.map(val => val == null ? null : new TreeNode(val));
+    for (let i = 0, j = 1; j < arr.length; i++) {
+        if (nodes[i] !== null) {
+            nodes[i].left = nodes[j++] || null;
+            if (j < arr.length) {
+                nodes[i].right = nodes[j++] || null;
+            }
+        }
+    }
+    return nodes[0];
+}
+
+
+function countNodes(root) {
+    if (!root) return 0;
+
+    let leftHeight = 0;
+    let left = root;
+    while (left) {
+        leftHeight++;
+        left = left.left;
+    }
+    let rightHeight = 0;
+    let right = root;
+    while (right) {
+        rightHeight++;
+        right = right.right;
+    }
+
+    // If heights are equal, it's a perfect binary tree
+    if (leftHeight === rightHeight) {
+        return Math.pow(2, leftHeight) - 1;
+    }
+
+    // Otherwise, recursively count left and right
+    return 1 + countNodes(root.left) + countNodes(root.right);
+}
+
+let root = buildTree([1,2,3,4,5,6]);
+console.log(countNodes(root));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct. -->
+    <script>
+        function containDup(nums) {
+            let seen = new Set();
+            for (let num of nums) {
+                if(seen.has(num)) return true;
+                seen.add(num);
+            }
+            return false;
+        }
+
+        console.log(containDup([1, 2, 3, 1]));
+        console.log(containDup([1, 2, 3]));
+        
+    </script>
+</body>
+
+</html>
