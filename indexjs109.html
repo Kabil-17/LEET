@@ -34,18 +34,21 @@
                 current = current.next;
             }
 
-            let prev = arr.slice();
-            console.log(prev);
-            
-            arr.reverse();
-            console.log(arr);
-            
-            if(arr === prev) return true;
-            return false;
+            let left = 0 ,right = arr.length-1;
+            while(left<right){
+                if(arr[left]!==arr[right]) return false;
+                left++;
+                right--
+            }
+            return true;
         }
 
         const root = buildTree([1, 2, 2, 1]);
         console.log(isPalindrome(root));
+        const root2 = buildTree([1, 2, 5, 6, 2, 1]);
+        console.log(isPalindrome(root2));
+        
+        
     </script>
 </body>
 

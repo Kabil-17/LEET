@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given two strings s and t, return true if t is an anagram of s, and false otherwise. -->
+     <script>
+        function anagram(s,t){
+            if(s.length!==t.length) return false;
+            let sorted1 = s.split('').sort().join('');
+            let sorted2 = t.split('').sort().join('');
+            return sorted1 === sorted2
+            
+        }
+        console.log(anagram('anagram','nagaram'));
+        
+     </script>
+</body>
+</html>
