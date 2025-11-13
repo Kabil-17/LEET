@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given the root of a binary tree, return all root-to-leaf paths in any order. -->
+    <script>
+        class TreeNode {
+            constructor(val, left = null, right = null) {
+                this.val = (val === undefined ? 0 : val);
+                this.left = (left === undefined ? null : left);
+                this.right = (right === undefined ? null : right);
+            }
+        }
+        function buildTree(nums) {
+            let nodes = nums.map(v => v === null ? null : new TreeNode(v));
+            let i = 0;
+            while (i < nums.length) {
+                if (nodes[i] !== null) {
+                    let left = 2 * i + 1;
+                    let right = 2 * i + 2;
+                    if (left < nums.length) nodes[i].left = nodes[left];
+                    if (right < nums.length) nodes[i].right = nodes[right];
+                }
+                i++;
+            }
+            return nodes[0];
+        }
+        function binaryTreePaths(root) {
+            let result = [];
+            function check(node, path) {
+                if (!node) return;
+                path += node.val;
+                if (!node.left && !node.right) {
+                    result.push(path);
+                }
+                else {
+                    path += '->';
+                    check(node.left, path);
+                    check(node.right, path);
+                }
+            }
+            check(root, '');
+            return result;
+        };
+
+        let root = buildTree([3, 9, 3, 4, 5, 6]);
+        console.log(binaryTreePaths(root));
+
+    </script>
+</body>
+
+</html>

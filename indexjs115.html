@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myatoi(s){
+            s = s.trimStart();
+            if(s.length === 0) return s;
+            let sign = 1;
+            let i = 0;
+            if(s[i]==='-'){
+                sign = -1;
+                i++;
+            }
+            else if(s[i]==='+'){
+                i++;
+            }
+            let num = 0;
+            while(i<s.length && s[i]>='0' && s[i]<='9'){
+                num = num * 10 + (s[i].charCodeAt(0)-'0'.charCodeAt(0));
+                i++;
+            }
+            num = num*sign;
+            const intMax = 2**31-1;
+            const intMin = -(2**31);
+            if(num>intMax) return intMax;
+            if(num<intMin) return intMin;
+            return num;
+        }
+        console.log(myatoi('   -23'));
+        
+    </script>
+    
+</body>
+</html>

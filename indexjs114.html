@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function zigZag(s,numRow){
+            if (numRow === 1 || s.length <= numRow) return s;
+            let arr = Array.from({length:numRow},()=>'');
+            let down = false;
+            let cuRow = 0;
+            for(let ch of s){
+                arr[cuRow]+=ch
+                if(cuRow===0||cuRow===numRow-1) down = !down;
+                cuRow += down?1:-1;
+            }            
+            return arr.join('');
+        }
+        console.log(zigZag('kabilan',3));
+    </script>
+</body>
+</html>

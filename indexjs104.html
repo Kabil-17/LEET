@@ -17,7 +17,7 @@
         }
 
         function buildTree(nums){
-            let nodes = nums.map(v => new TreeNode(v))
+            let nodes = nums.map(v => v === null? null : new TreeNode(v))
             let i = 0;
             while(i < nums.length){
                 if(nodes[i] !== null){
