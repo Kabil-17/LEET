@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function threesum(num, target) {
+            num.sort((a,b)=>a-b);
+            let closest = Infinity;   // this is for getting the previous sum to compare closest integer;
+            for(let i = 0;i<num.length-2;i++){
+                let left = i+1;
+                let right = num.length-1;
+                while(left<right){
+                    let sum = num[i]+num[left]+num[right];
+                    if(Math.abs(sum-target)<Math.abs(closest-target)) closest = sum;
+                    if(sum<target) left++;
+                    else right--;
+                }
+            }
+             return closest;
+        }
+        console.log(threesum([-1, 2, 1, -4], 1));
+
+    </script>
+</body>
+
+</html>
