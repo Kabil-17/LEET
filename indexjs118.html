@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given the head of a linked list, remove the nth node from the end of the list and return its head. -->
+    <script>
+        class TreeNode {
+            constructor(val, next = null) {
+                this.val = val;
+                this.next = next;
+            }
+        }
+        function buildtree(arr) {
+            const head = new TreeNode(arr[0]);
+            let current = head;
+            for (let i = 1; i < arr.length; i++) {
+                current.next = new TreeNode(arr[i]);
+                current = current.next;
+            }
+            return head;
+        }
+        function removeEl(head, n) {
+            let dummy = new TreeNode(0,head);
+            let fast = dummy;
+            let slow = dummy;
+            for(let i = 0;i<=n;i++){
+                fast = fast.next;
+            }
+            while(fast!==null){
+                fast = fast.next;
+                slow = slow.next;
+            }
+            slow.next = slow.next.next;
+            return dummy.next;
+        }
+        let head = buildtree([1, 2, 3, 4, 5]);
+        console.log(removeEl(head, 4));
+    </script>
+</body>
+</html>
