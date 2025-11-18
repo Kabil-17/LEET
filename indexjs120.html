@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function genParanthesis(n){
+            let result = [];
+            function backTrace(currentString,open,close){
+                if(currentString.length == 2*n){
+                    result.push(currentString);
+                }
+                if(open<n){
+                    backTrace(currentString+'(',open+1,close);
+                }
+                if(close<open){
+                    backTrace(currentString+')',open,close+1);
+                }
+            }
+            backTrace('',0,0)
+            return result;
+        }
+        console.log(genParanthesis(3));
+        
+    </script>
+</body>
+</html>

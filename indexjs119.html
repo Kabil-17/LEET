@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function letterCombinations(digits) {
+            if (!digits) return [];
+            const obj = {
+                '2': 'abc',
+                '3': 'def',
+                '4': 'ghi',
+                '5': 'jkl',
+                '6': 'mno',
+                '7': 'pqrs',
+                '8': 'tuv',
+                '9': 'wxyz'
+            }
+          let result = [""];
+
+    for (let digit of digits) {
+        let letters = obj[digit];
+        let newResult = [];
+
+        for (let combo of result) {
+            for (let letter of letters) {
+                newResult.push(combo + letter);
+            }
+        }
+
+        result = newResult;
+    }
+
+    return result;
+}
+
+        console.log(letterCombinations('34'));
+        const obj = {
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz'
+        }
+      
+        
+
+
+
+    </script>
+</body>
+
+</html>
