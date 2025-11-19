@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Given a linked list, swap every two adjacent nodes and return its head. 
+     You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.) -->
+    <script>
+        class ListNode{
+            constructor(val,next=null){
+                this.val = val;
+                this.next = next;
+            }
+        }
+        function createList(arr){
+            const head = new ListNode(arr[0]);
+            let current = head;
+            for(let i = 1;i<arr.length;i++){
+                current.next = new ListNode(arr[i]);
+                current = current.next;
+            }
+            return head;
+        }
+        function swapPair(head){
+            let dummy = new ListNode(0,head);
+            let current = head;            
+            let prev = dummy;
+
+            while(current && current.next){
+               let first = current;
+               let second = current.next;
+               first.next = second.next;
+               second.next = first;
+               prev.next = second;
+               prev = first;
+               current = first.next;
+            }
+            return dummy.next
+        }
+        let head = createList([1,2,3,4,5])
+        console.log(swapPair(head));
+        
+    </script>
+</body>
+</html>
