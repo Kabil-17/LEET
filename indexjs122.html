@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- The integer division should truncate toward zero, which means losing its fractional part. For example, 8.345 would be truncated to 8, and -2.7335 would be truncated to -2.
+Return the quotient after dividing dividend by divisor. -->
+<script>
+    function divideTwo(dividend,divisor){
+        const Int_min = -(2**31);
+        const Int_max = 2**31-1;
+        if(dividend===Int_min&&divisor===-1) return Int_max;
+        let negative = false;
+        if((dividend<0)^(divisor<0)) negative = true;
+        let dvd = Math.abs(dividend);
+        let dvs = Math.abs(divisor);
+        let result = 0;
+        while(dvd>=dvs){
+        let temp = dvs;
+        let count = 1;
+        while((temp+temp)<=dvd){
+            temp = temp+temp;
+            count = count+count;
+        }
+        dvd-=temp;
+        result+=count;
+    }
+        if(negative) result = -result;
+        if(result < Int_min) return Int_min;
+        if(result > Int_max) return Int_max;
+        return result;
+    }
+    console.log(divideTwo(100,-9));
+    
+</script>
+</body>
+</html>
