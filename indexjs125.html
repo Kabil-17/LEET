@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+If target is not found in the array, return [-1, -1].
+You must write an algorithm with O(log n) runtime complexity. -->
+    <script>
+        function findIndexes(nums, target) {
+            let positions = [-1,-1];
+            let low = 0;
+            let high = nums.length - 1;
+            while (low<=high) {
+                let mid = Math.floor((low + high) / 2);
+                if (nums[mid] === target) {
+                    while (nums[mid-1] === target) {
+                        mid = mid-1;
+                    }
+                    positions[0] = mid; 
+                    while(nums[mid+1]===target){
+                        mid=mid+1;
+                    }
+                    positions[1] = mid;
+                    return positions;
+                }  
+                else if(target < nums[mid]) high = mid-1;
+                else low = mid+1;
+            }
+            return positions;
+        }
+        console.log(findIndexes([2],2));
+        
+    </script>
+</body>
+
+</html>
