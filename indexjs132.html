@@ -18,13 +18,9 @@
                     result.push(nums.slice());
                     return;
                 }
-                for(let j = i;j<nums.length;j++){
-                    // console.log(i,nums);
-                    
+                for(let j = i;j<nums.length;j++){                    
                     [nums[i],nums[j]]=[nums[j],nums[i]];
-                    dfs(i+1,nums);
-                    // console.log(i,[nums[j],nums[i]]);
-                    
+                    dfs(i+1,nums);                    
                     [nums[i],nums[j]]=[nums[j],nums[i]]
                 }
             }

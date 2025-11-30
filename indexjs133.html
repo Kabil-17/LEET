@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order. -->
+    <script>
+        function permutation(nums) {
+            const result = [];
+            let set = new Set();
+            var dfs = (i, nums) => {
+                if (i === nums.length - 1) {
+                    if (!set.has(JSON.stringify(nums))) {
+                        set.add(JSON.stringify(nums));
+                        result.push(nums.slice());
+                        return;
+                    }
+                }
+                for (let j = i; j < nums.length; j++) {
+                    [nums[i], nums[j]] = [nums[j], nums[i]];
+                    dfs(i + 1, nums);
+                    [nums[i], nums[j]] = [nums[j], nums[i]]
+                }
+            }
+            dfs(0, nums);
+            return result;
+        }
+        console.log(permutation([1, 2, 3]));
+    </script>
+</body>
+
+</html>
