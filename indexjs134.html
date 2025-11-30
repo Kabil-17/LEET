@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function smallestPos(nums){
+            if(!nums.includes(1)) return 1;
+            nums = nums.filter(n => n >0)
+            let minVal = 100000;
+            for(let i = 0;i<nums.length;i++){
+                if(nums[i] === 0) continue;
+                if(nums[i]+1 !== nums[i+1]&& !nums.includes(nums[i]+1)){
+                    minVal = Math.min(minVal,nums[i]+1)
+                }
+            }
+            return minVal
+        }
+        console.log(smallestPos([9,8,7,6,5,4,3,2,1]));
+    </script>
+</body>
+</html>
