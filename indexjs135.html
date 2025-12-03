@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input {
+            margin-bottom: 10px;
+        }
+
+        .result .boxes {
+            height: 50px;
+            width: 80px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="input">
+        <input type="text" name="color" class="textarea" placeholder="Type color">
+        <button onclick="createBricks()">Submit</button>
+    </div>
+    <div class="result"></div>
+    <script>
+        let colors = [];
+        function createBricks() {
+            let inputElement = document.querySelector('.textarea');
+            colors.push(inputElement.value);
+            if (inputElement) {
+                for (let i = 0; i < colors.length; i++) {
+                    document.querySelector('.result').innerHTML += `<div class="boxes" style="background:${inputElement.value}"></div>`
+                }
+            }
+
+        }
+
+
+    </script>
+</body>
+
+</html>

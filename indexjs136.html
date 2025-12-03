@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function mapAlps(s){
+            let arr = Array(26).fill(0),i=0;
+            let set = new Set();
+            while(i<s.length){
+                if(set.has(s[i])) {
+                    i++;
+                    continue;
+                }
+                set.add(s[i]);
+                if(/[a-z]/.test(s[i])){
+                    let index = s.charCodeAt(i) - 97;
+                    arr[index] = 1;
+                }
+                i++;
+            }
+            return arr.every(val => val ===1);
+        }
+        console.log(mapAlps('abcdefghijklmnopqrstuvwxyz'));
+        
+    </script>
+</body>
+</html>
