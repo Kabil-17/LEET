@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function pow(x,n){
+            let N = n;
+            if(N<0){
+                x=1/x;
+                N=-N;
+            }
+            let result = 1;
+            let current = x;
+            while(N>0){
+                if(N%2===1){
+                    result*=current;
+                }
+                current*=current
+                N=Math.floor(N/2);
+            }
+            return result;
+        }
+        console.log(pow(2,10));
+        
+    </script>
+</body>
+</html>

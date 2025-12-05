@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Given an array of strings strs, group the anagrams together. You can return the answer in any order. -->
+    <script>
+        function anagram(words) {
+            let group = [];
+            let set = new Set();
+            let obj = {};
+            for (let i = 0; i < words.length; i++) {
+                let a = [...words[i]].sort().join('');
+                if (set.has(a)) {
+                    console.log(obj[a]);
+                    
+                    let groupIndex = obj[a];
+                    group[groupIndex].push(words[i]);
+                    continue;
+                }
+                set.add(a);
+                obj[a] = group.length;
+                group.push([words[i]]);
+            }
+            return group;
+        }
+        console.log(anagram(["eat", "tea", "tan", "ate", "nat", "bat"]));
+
+    </script>
+</body>
+
+</html>
